@@ -1,0 +1,100 @@
+from robolink import *
+from robodk import *
+RDK = Robolink()
+RDK.Render(True)
+............................................................
+robot = RDK.Item('Fanuc M-2000iC/210R')
+tool  = RDK.Item('Tool')
+T1=mbox('Enter [x y z roll pitch yaw] for frame 4', b1='Cancle', b2='OK',frame=True,entry=True )
+T1=int(T1)
+x=t1[0];y=t1[1]
+T2=mbox('Enter [x y z roll pitch yaw] for frame 7', b1='Cancle', b2='OK',frame=True,entry=True )
+T2=int(T2)
+T3=mbox('Enter [x y z roll pitch yaw] for frame 5', b1='Cancle', b2='OK',frame=True,entry=True )
+T3=int(T3)
+
+frame4=RDK.AddFrame('frame4', itemparent=0)
+a1 = RDK.AddTarget(''))
+a1=a1.setPose(pose_ref)
+setAsCartesianTarget()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+....................................................................
+while(1)  :
+ import csv
+ task = []
+ chartxy = []   
+ prod = mbox ('Enter the name of csvfile in directory for input Table' , entry =True)
+ prod = str(prod)  
+ with open(prod) as f:
+ #with open('Book1.csv') as f:    
+    reader = csv.reader(f)
+	.......................................................
+    for row in reader:
+       # task.append(row[0])
+	   ....................................................
+     task = row[0]  
+     chartxy = row[1]
+	 tasknum = int(task)
+	 .........................................................
+	 chartx = "chartx"
+     charty = "charty"
+	 ........................................................
+	 if chartxy == chartx :
+	 for x in range(tasknum) :
+	 robot.setPoseFrame(frame4)
+          robot.MoveJ(a1)
+          robot.MoveL(t1)
+          robot.MoveL(a1)                    ********picking from chart4*******
+	 robot.setPoseFrame(frame5)
+          robot.MoveJ(a3)
+          robot.MoveL(t3)
+          robot.MoveL(a3)  
+		  ....................................................
+	 elif chartxy == charty :	
+	 for y in range(tasknum) :
+	 robot.setPoseFrame(frame7)
+          robot.MoveJ(a2)
+          robot.MoveL(t2)
+          robot.MoveL(a2)                   *********picking from chart7********
+          robot.setPoseFrame(frame5)
+          robot.MoveJ(a3)
+          robot.MoveL(t3)
+          robot.MoveL(a3)
+		  ....................................................
+		  
